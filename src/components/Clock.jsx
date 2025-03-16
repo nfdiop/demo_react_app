@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { TimeUtils } from "../../utils/time";
+import { TimeUtils } from "../utils/time";
 
 export function Clock() {
   const [time, setTime] = useState(new Date());
