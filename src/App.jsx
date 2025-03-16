@@ -1,9 +1,22 @@
-import { useState } from "react";
+import { useState, lazy, Suspense } from "react";
 import "./App.css";
 import { Clock } from "./components/Clock";
-import { Dashboard } from "./components/Dashboard";
-import { Settings } from "./components/Settings";
-import { UserManagement } from "./components/UserManagement";
+
+const Dashboard = lazy(() =>
+  import("./components/Dashboard").then((module) => ({
+    default: module.Dashboard,
+  }))
+);
+const UserManagement = lazy(() =>
+  import("./components/UserManagement").then((module) => ({
+    default: module.UserManagement,
+  }))
+);
+const Settings = lazy(() =>
+  import("./components/Settings").then((module) => ({
+    default: module.Settings,
+  }))
+);
 
 function App() {
   const [activeTab, setActiveTab] = useState("home");
@@ -12,11 +25,23 @@ function App() {
     // Only load the component when the corresponding tab is active
     switch (activeTab) {
       case "dashboard":
-        return <Dashboard />;
+        return (
+          <Suspense fallback={<LoadingFallback title="Dashboard" />}>
+            <Dashboard />
+          </Suspense>
+        );
       case "users":
-        return <UserManagement />;
+        return (
+          <Suspense fallback={<LoadingFallback title="User Management" />}>
+            <UserManagement />
+          </Suspense>
+        );
       case "settings":
-        return <Settings />;
+        return (
+          <Suspense fallback={<LoadingFallback title="Settings" />}>
+            <Settings />
+          </Suspense>
+        );
       default:
         return <HomePage onNavigate={setActiveTab} />;
     }
