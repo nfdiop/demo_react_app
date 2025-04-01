@@ -1,6 +1,9 @@
 import { useState } from "react";
 import "./App.css";
-import { Dashboard, UserManagement, Settings, Clock } from "./components";
+import { Clock } from "./components/Clock";
+import { Dashboard } from "./components/Dashboard";
+import { Settings } from "./components/Settings";
+import { UserManagement } from "./components/UserManagement";
 
 function App() {
   const [activeTab, setActiveTab] = useState("home");
