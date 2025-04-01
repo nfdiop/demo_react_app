@@ -1,4 +1,8 @@
-import moment from "moment";
+import dayjs from "dayjs";
+import advancedFormat from "dayjs/plugin/advancedFormat";
+
+// Extend dayjs with advanced format so we can use ordinal suffixes
+dayjs.extend(advancedFormat);
 
 // Get the current time
 export const getCurrentTime = () => new Date();
@@ -57,20 +61,20 @@ export const getDifferenceInMonths = (time1, time2) =>
 export const getDifferenceInYears = (time1, time2) =>
   Math.abs((time1 - time2) / 1000 / 60 / 60 / 24 / 365);
 //  Get the time in a specific format
-export const getTimeInFormat = (time, format) => moment(time).format(format);
+export const getTimeInFormat = (time, format) => dayjs(time).format(format);
 //  Get the time in a specific timezone
-export const getTimeInTimezone = (time, timezone) => moment(time).tz(timezone);
+export const getTimeInTimezone = (time, timezone) => dayjs(time).tz(timezone);
 //  Get the time in a specific locale
-export const getTimeInLocale = (time, locale) => moment(time).locale(locale);
+export const getTimeInLocale = (time, locale) => dayjs(time).locale(locale);
 //  Get the time in a specific language
 export const getTimeInLanguage = (time, language) =>
-  moment(time).locale(language);
+  dayjs(time).locale(language);
 //  Get the time in a specific calendar
 export const getTimeInCalendar = (time, calendar) =>
-  moment(time).calendar(calendar);
+  dayjs(time).calendar(calendar);
 //  Get the time in a specific week
-export const getTimeInWeek = (time, week) => moment(time).week(week);
+export const getTimeInWeek = (time, week) => dayjs(time).week(week);
 //  Get the time in a specific day
-export const getTimeInDay = (time, day) => moment(time).day(day);
+export const getTimeInDay = (time, day) => dayjs(time).day(day);
 //  Get the time in a specific month
-export const getTimeInMonth = (time, month) => moment(time).month(month);
+export const getTimeInMonth = (time, month) => dayjs(time).month(month);
